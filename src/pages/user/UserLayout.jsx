@@ -21,38 +21,41 @@ const styles = {
 };
 
 function UserLayout() {
-  const [ok, setOk] = useState(false);
+  const [ok, setOk] = useState(true);
   const [auth, setAuth] = useAuth();
 
-  useEffect(() => {
-    const authCheck = async () => {
-      const res = await axiosAPI.get("/auth/userauth", {
-        headers: {
-          Authorization: auth?.token,
-        },
-      });
-      console.log(res);
-      if (res.data.ok) {
-        setOk(true);
-      } else {
-        setOk(false);
-      }
-    };
-    if (auth?.token) authCheck();
-  }, [auth?.token]);
-  return ok ? (
-    <Box style={styles.boxContainer}>
-      <UserPopupProvider>
-        <UserNavbar />
-        <Outlet />
-        {/* <HowItWorks /> */}
-        <Footer />
-      </UserPopupProvider>
-      <ToastContainer className="custom-toast-container" />
-    </Box>
-  ) : (
-    <Spinner path="signin" />
+  // const authCheck = async () => {
+  //   const res = await axiosAPI.get("/auth/userauth", {
+  //     headers: {
+  //       Authorization: auth?.token,
+  //     },
+  //   });
+  //   console.log(res);
+  //   if (res.data.ok) {
+  //     setOk(true);
+  //   } else {
+  //     setOk(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (auth?.token) authCheck();
+  // }, [auth?.token]);
+  return (
+    ok && (
+      <Box style={styles.boxContainer}>
+        <UserPopupProvider>
+          <UserNavbar />
+          <Outlet />
+          {/* <HowItWorks /> */}
+          <Footer />
+        </UserPopupProvider>
+        <ToastContainer className="custom-toast-container" />
+      </Box>
+    )
   );
+  // ) : (
+  //   <Spinner path="signin" />
+  // );
 }
 
 export default UserLayout;

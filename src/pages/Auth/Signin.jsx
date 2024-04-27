@@ -50,6 +50,7 @@ function Signin() {
           role: res.data.user.role,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
+        JSON.stringify(res.data);
         console.log(JSON.stringify(res.data));
         // setUserRole(res.data.user.role);
         if (res.data.user.role === 1) {

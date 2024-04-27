@@ -181,8 +181,8 @@ function RatingSection() {
         sm: 10,
         xs: 0,
       }}
-      gap={5}  direction={"row"}>
-      
+      gap={5}
+      direction={"row"}>
       <Stack direction="row" flexWrap="wrap">
         <Stack spacing={2}>
           <Typography
